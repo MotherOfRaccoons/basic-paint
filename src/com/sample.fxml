@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.MotionBlur?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: rgba(255, 217, 178, 0.7);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller">
+   <children>
+      <Pane layoutX="10.0" layoutY="100.0" prefHeight="690.0" prefWidth="980.0" style="-fx-background-color: white; -fx-border-color: rgba(255, 200, 35, 0.5); -fx-border-width: 6;">
+         <effect>
+            <MotionBlur angle="45.0" radius="15.86" />
+         </effect>
+      </Pane>
+      <Canvas fx:id="canvas" height="684.0" layoutX="13.0" layoutY="103.0" onMouseClicked="#drawClick" width="974.0" />
+      <Button id="drawAll" layoutX="14.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnLinePressed" prefHeight="48.0" prefWidth="87.0" text="Line" />
+      <Button layoutX="112.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnRectanglePressed" prefHeight="48.0" prefWidth="87.0" text="Rectangle" />
+      <Button id="drawAll" layoutX="211.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnSquarePressed" prefHeight="48.0" prefWidth="87.0" text="Square" />
+      <Button id="drawAll" layoutX="308.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnEllipsePressed" prefHeight="48.0" prefWidth="87.0" text="Ellipse" />
+      <Button id="drawAll" layoutX="405.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnCirclePressed" prefHeight="48.0" prefWidth="87.0" text="Circle" />
+      <Button id="drawAll" layoutX="859.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnClearPressed" prefHeight="48.0" prefWidth="127.0" text="Clear" />
+      <ColorPicker fx:id="colorPicker" editable="true" layoutX="720.0" layoutY="38.0" onAction="#colorChanged" prefHeight="48.0" prefWidth="127.0" />
+   </children>
+</AnchorPane>

@@ -5,24 +5,28 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.shapes.Shape;
 
 public class Controller implements Initializable {
     @FXML
     Canvas canvas;
     @FXML
     ColorPicker colorPicker;
+    @FXML
+    Slider slider;
 
     private GraphicsContext gc;
     private Point beginPoint = new Point(0, 0);
     private Point endPoint = new Point(0, 0);
     private ShapeFactory shapeFactory = new ShapeFactory();
-    private com.shapes.Shape Shape = null;
+    private Shape Shape = null;
 
     public void drawClick(MouseEvent event) {
         if (Shape != null) {
@@ -62,6 +66,8 @@ public class Controller implements Initializable {
     public void colorChanged() {
         gc.setStroke(colorPicker.getValue());
     }
+
+    public void sliderDragged() {gc.setLineWidth(slider.getValue());}
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

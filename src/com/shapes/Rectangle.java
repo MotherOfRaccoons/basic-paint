@@ -9,10 +9,6 @@ import static java.lang.Math.min;
 
 public class Rectangle extends Shape {
 
-    public Rectangle(Point beginPoint, Point endPoint) {
-        super(beginPoint, endPoint);
-    }
-
     @Override
     public void draw(GraphicsContext gc) {
         double x1 = min(beginPoint.getX(), endPoint.getX());

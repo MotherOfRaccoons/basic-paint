@@ -8,17 +8,17 @@ import java.awt.*;
 
 class ShapeFactory {
 
-    Shape getShape(String shapeType, Point beginPoint, Point endPoint) {
+    Shape getShape(String shapeType) {
         if (shapeType.equalsIgnoreCase("Line")) {
-            return new Line(beginPoint, endPoint);
+            return new Line();
         } else if (shapeType.equalsIgnoreCase("Ellipse")) {
-            return new Ellipse(beginPoint, endPoint);
+            return new Ellipse();
         } else if (shapeType.equalsIgnoreCase("Circle")) {
-            return new Circle(beginPoint, endPoint);
+            return new Circle();
         } else if (shapeType.equalsIgnoreCase("Rectangle")) {
-            return new Rectangle(beginPoint, endPoint);
+            return new Rectangle();
         } else if (shapeType.equalsIgnoreCase("Square")) {
-            return new Square(beginPoint, endPoint);
+            return new Square();
         } else {
             return null;
         }

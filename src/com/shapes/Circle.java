@@ -8,9 +8,6 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class Circle extends Shape {
-    public Circle(Point beginPoint, Point endPoint) {
-        super(beginPoint, endPoint);
-    }
 
     @Override
     public void draw(GraphicsContext gc) {

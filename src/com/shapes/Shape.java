@@ -4,10 +4,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public abstract class Shape {
+public abstract class Shape implements Serializable {
     Point beginPoint = new Point(0,0), endPoint = new Point(0,0);
-    private Color color = Color.BLACK;
+    private String color = Color.BLACK.toString();
     private double width = 1;
 
     public void setCoordinates(Point beginPoint, Point endPoint) {
@@ -20,11 +21,11 @@ public abstract class Shape {
     }
 
     public void setColor(Color color) {
-        this.color = color;
+        this.color = color.toString();
     }
 
     public Color getColor() {
-        return color;
+        return Color.web(color);
     }
 
     public void setWidth(double width) {

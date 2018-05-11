@@ -5,10 +5,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
+import java.io.*;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,6 +23,7 @@ public class Controller implements Initializable {
     @FXML ColorPicker colorPicker;
     @FXML Slider slider;
     @FXML ListView<Shape> figureList;
+    @FXML TextField edtNameOfFile;
 
     private GraphicsContext gc;
     private ShapeFactory shapeFactory = new ShapeFactory();
@@ -57,6 +60,38 @@ public class Controller implements Initializable {
             aShape.draw(gc);
         }
         gc.setStroke(colorPicker.getValue());
+    }
+
+    public void btnSerialize() {
+        String nameOfFile = edtNameOfFile.getText();
+        System.out.println("FILE");
+       try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(nameOfFile))) {
+            out.writeObject(list);
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("unchecked cast")
+    public void btnDeserialize() {
+        String nameOfFile = edtNameOfFile.getText();
+        if (new File(nameOfFile).exists()) {
+            clearCanvas();
+            list.clear();
+            figureList.getItems().clear();
+            try (ObjectInputStream out = new ObjectInputStream(new FileInputStream(nameOfFile))) {
+                list = (List<Shape>) out.readObject();
+            } catch (Exception exc) {
+                exc.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Unable to read file.", ButtonType.OK);
+                alert.showAndWait();
+            }
+            figureList.getItems().addAll(list);
+            redraw();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "File "+nameOfFile+"doesn't exists.", ButtonType.OK);
+            alert.showAndWait();
+        }
     }
 
     private void clearCanvas() {
@@ -122,5 +157,6 @@ public class Controller implements Initializable {
         gc = canvas.getGraphicsContext2D();
         shape = shapeFactory.getShape("line");
         colorPicker.setValue(Color.BLACK);
+        edtNameOfFile.setText("temp.out");
     }
 }

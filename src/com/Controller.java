@@ -4,8 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
@@ -21,6 +20,7 @@ public class Controller implements Initializable {
     @FXML Canvas canvas;
     @FXML ColorPicker colorPicker;
     @FXML Slider slider;
+    @FXML ListView<Shape> figureList;
 
     private GraphicsContext gc;
     private ShapeFactory shapeFactory = new ShapeFactory();
@@ -36,7 +36,9 @@ public class Controller implements Initializable {
         shape.setWidth(slider.getValue());
         shape.setCoordinates(new Point(x,y), new Point(x, y));
         list.add(shape);
-        shape.draw(gc);
+        figureList.getItems().add(shape);
+        figureList.getSelectionModel().selectLast();
+        redraw();
     }
 
     public void drawDrag(MouseEvent event) {
@@ -44,6 +46,10 @@ public class Controller implements Initializable {
         int y = (int) event.getY();
         shape.setEndPoint(new Point(x, y));
         list.set(list.size() - 1, shape);
+        redraw();
+    }
+
+    private void redraw() {
         clearCanvas();
         for (Shape aShape : list) {
             gc.setStroke(aShape.getColor());
@@ -80,6 +86,35 @@ public class Controller implements Initializable {
     public void btnClearPressed() {
         clearCanvas();
         list.clear();
+        figureList.getItems().clear();
+    }
+
+    public void btnDeleteObject() {
+        int index = figureList.getSelectionModel().getSelectedIndex();
+        if (index >= 0) {
+            list.remove(figureList.getItems().get(index));
+            figureList.getItems().remove(index);
+            redraw();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Please chose an object to delete.", ButtonType.OK);
+            alert.showAndWait();
+        }
+    }
+
+    public void dragSlider() {
+        shape.setWidth(slider.getValue());
+        redraw();
+    }
+
+    public void colorChanged() {
+        shape.setColor(colorPicker.getValue());
+        redraw();
+    }
+
+    public void changeFigure() {
+        shape = figureList.getItems().get(figureList.getSelectionModel().getSelectedIndex());
+        colorPicker.setValue(shape.getColor());
+        slider.setValue(shape.getWidth());
     }
 
     @Override

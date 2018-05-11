@@ -6,59 +6,50 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-            prefWidth="1000.0" style="-fx-background-color: rgba(255, 217, 178, 0.7);"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller">
-   <Pane layoutX="10.0" layoutY="100.0" prefHeight="690.0" prefWidth="980.0"
-         style="-fx-background-color: white; -fx-border-color: rgba(255, 200, 35, 0.5); -fx-border-width: 6;">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1320.0" style="-fx-background-color: rgba(255, 217, 178, 0.7);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller">
+   <Pane layoutX="10.0" layoutY="100.0" prefHeight="690.0" prefWidth="980.0" style="-fx-background-color: white; -fx-border-color: rgba(255, 200, 35, 0.5); -fx-border-width: 6;">
       <effect>
-         <MotionBlur angle="45.0" radius="15.86"/>
+         <MotionBlur angle="45.0" radius="15.86" />
       </effect>
    </Pane>
-   <Canvas fx:id="canvas" height="684.0" layoutX="13.0" layoutY="103.0" onMouseDragged="#drawDrag"
-           onMousePressed="#drawClick" width="974.0"/>
-   <Button id="drawAll" layoutX="14.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnLinePressed"
-           prefHeight="48.0" prefWidth="87.0" text="Line">
+   <Canvas fx:id="canvas" height="684.0" layoutX="13.0" layoutY="103.0" onMouseDragged="#drawDrag" onMousePressed="#drawClick" width="972.0" />
+   <Button id="drawAll" layoutX="14.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnLinePressed" prefHeight="48.0" prefWidth="87.0" text="Line">
       <font>
-         <Font size="15.0"/>
+         <Font size="15.0" />
       </font>
    </Button>
-   <Button layoutX="112.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnRectanglePressed"
-           prefHeight="48.0" prefWidth="87.0" text="Rectangle">
+   <Button layoutX="112.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnRectanglePressed" prefHeight="48.0" prefWidth="87.0" text="Rectangle">
       <font>
-         <Font size="15.0"/>
+         <Font size="15.0" />
       </font>
    </Button>
-   <Button id="drawAll" layoutX="211.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnSquarePressed"
-           prefHeight="48.0" prefWidth="87.0" text="Square">
+   <Button id="drawAll" layoutX="211.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnSquarePressed" prefHeight="48.0" prefWidth="87.0" text="Square">
       <font>
-         <Font size="15.0"/>
+         <Font size="15.0" />
       </font>
    </Button>
-   <Button id="drawAll" layoutX="308.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnEllipsePressed"
-           prefHeight="48.0" prefWidth="87.0" text="Ellipse">
+   <Button id="drawAll" layoutX="308.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnEllipsePressed" prefHeight="48.0" prefWidth="87.0" text="Ellipse">
       <font>
-         <Font size="15.0"/>
+         <Font size="15.0" />
       </font>
    </Button>
-   <Button id="drawAll" layoutX="405.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnCirclePressed"
-           prefHeight="48.0" prefWidth="87.0" text="Circle">
+   <Button id="drawAll" layoutX="405.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnCirclePressed" prefHeight="48.0" prefWidth="87.0" text="Circle">
       <font>
-         <Font size="15.0"/>
+         <Font size="15.0" />
       </font>
    </Button>
-   <Button id="drawAll" layoutX="859.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnClearPressed"
-           prefHeight="48.0" prefWidth="127.0" text="Clear">
+   <Button id="drawAll" layoutX="859.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnClearPressed" prefHeight="48.0" prefWidth="127.0" text="Clear">
       <font>
-         <Font size="15.0"/>
+         <Font size="15.0" />
       </font>
    </Button>
-   <ColorPicker fx:id="colorPicker" editable="true" layoutX="720.0" layoutY="38.0" prefHeight="48.0" prefWidth="127.0"/>
-   <Slider fx:id="slider" blockIncrement="1.0" layoutX="524.0" layoutY="62.0" max="10.0" min="1.0" minorTickCount="1"
-           showTickMarks="true" value="1.0"/>
+   <ColorPicker fx:id="colorPicker" editable="true" layoutX="720.0" layoutY="38.0" onAction="#colorChanged" prefHeight="48.0" prefWidth="127.0" />
+   <Slider fx:id="slider" blockIncrement="1.0" layoutX="524.0" layoutY="62.0" max="10.0" min="1.0" minorTickCount="1" onMouseDragged="#dragSlider" showTickMarks="true" value="1.0" />
    <Label layoutX="565.0" layoutY="35.0" prefHeight="24.0" prefWidth="54.0" text="Widht" textAlignment="CENTER">
       <font>
-         <Font size="17.0"/>
+         <Font size="17.0" />
       </font>
    </Label>
+   <ListView fx:id="figureList" layoutX="1015.0" layoutY="38.0" onMouseClicked="#changeFigure" prefHeight="520.0" prefWidth="280.0" />
+   <Button layoutX="1061.0" layoutY="570.0" mnemonicParsing="false" onMousePressed="#btnDeleteObject" prefHeight="48.0" prefWidth="189.0" text="Delete" />
 </AnchorPane>

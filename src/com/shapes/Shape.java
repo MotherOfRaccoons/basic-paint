@@ -17,7 +17,7 @@ public abstract class Shape implements Serializable {
     }
 
     public void setEndPoint(Point point){
-        this.beginPoint = point;
+        this.endPoint = point;
     }
 
     public void setColor(Color color) {

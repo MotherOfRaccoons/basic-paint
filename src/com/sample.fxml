@@ -17,47 +17,17 @@
    </Pane>
    <Canvas fx:id="canvas" height="684.0" layoutX="13.0" layoutY="103.0" onMouseDragged="#drawDrag"
            onMousePressed="#drawClick" width="972.0"/>
-   <Button id="drawAll" layoutX="14.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnLinePressed"
-           prefHeight="48.0" prefWidth="87.0" text="Line">
-      <font>
-         <Font size="15.0"/>
-      </font>
-   </Button>
-   <Button layoutX="112.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnRectanglePressed"
-           prefHeight="48.0" prefWidth="87.0" text="Rectangle">
-      <font>
-         <Font size="15.0"/>
-      </font>
-   </Button>
-   <Button id="drawAll" layoutX="211.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnSquarePressed"
-           prefHeight="48.0" prefWidth="87.0" text="Square">
-      <font>
-         <Font size="15.0"/>
-      </font>
-   </Button>
-   <Button id="drawAll" layoutX="308.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnEllipsePressed"
-           prefHeight="48.0" prefWidth="87.0" text="Ellipse">
-      <font>
-         <Font size="15.0"/>
-      </font>
-   </Button>
-   <Button id="drawAll" layoutX="405.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnCirclePressed"
-           prefHeight="48.0" prefWidth="87.0" text="Circle">
-      <font>
-         <Font size="15.0"/>
-      </font>
-   </Button>
-   <Button id="drawAll" layoutX="859.0" layoutY="38.0" mnemonicParsing="false" onMousePressed="#btnClearPressed"
+   <Button id="drawAll" layoutX="589.0" layoutY="29.0" mnemonicParsing="false" onMousePressed="#btnClearPressed"
            prefHeight="48.0" prefWidth="127.0" text="Clear">
       <font>
          <Font size="15.0"/>
       </font>
    </Button>
-   <ColorPicker fx:id="colorPicker" editable="true" layoutX="720.0" layoutY="38.0" onAction="#colorChanged"
+   <ColorPicker fx:id="colorPicker" editable="true" layoutX="450.0" layoutY="29.0" onAction="#colorChanged"
                 prefHeight="48.0" prefWidth="127.0"/>
-   <Slider fx:id="slider" blockIncrement="1.0" layoutX="524.0" layoutY="62.0" max="10.0" min="1.0" minorTickCount="1"
+   <Slider fx:id="slider" blockIncrement="1.0" layoutX="254.0" layoutY="53.0" max="10.0" min="1.0" minorTickCount="1"
            onMouseDragged="#dragSlider" showTickMarks="true" value="1.0"/>
-   <Label layoutX="565.0" layoutY="35.0" prefHeight="24.0" prefWidth="54.0" text="Widht" textAlignment="CENTER">
+   <Label layoutX="295.0" layoutY="26.0" prefHeight="24.0" prefWidth="54.0" text="Widht" textAlignment="CENTER">
       <font>
          <Font size="17.0"/>
       </font>
@@ -69,4 +39,5 @@
    <Button layoutX="1046.0" layoutY="705.0" mnemonicParsing="false" onAction="#btnSerialize" text="SERIALIZE"/>
    <Button layoutX="1160.0" layoutY="705.0" mnemonicParsing="false" onAction="#btnDeserialize" text="DESERIALIZE"/>
    <TextField fx:id="edtNameOfFile" layoutX="1039.0" layoutY="654.0" prefHeight="31.0" prefWidth="214.0"/>
+   <ChoiceBox fx:id="cbShapes" layoutX="29.0" layoutY="44.0" prefHeight="37.0" prefWidth="176.0"/>
 </AnchorPane>

@@ -1,5 +1,7 @@
 package com;
 
+import Plug.Plugin;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -12,6 +14,7 @@ import javafx.scene.paint.Color;
 import java.awt.*;
 import java.io.*;
 import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -24,16 +27,17 @@ public class Controller implements Initializable {
     @FXML Slider slider;
     @FXML ListView<Shape> figureList;
     @FXML TextField edtNameOfFile;
+    @FXML ChoiceBox cbShapes;
 
     private GraphicsContext gc;
     private ShapeFactory shapeFactory = new ShapeFactory();
     private Shape shape = null;
-    private String currentShape = "Line";
     private List<Shape> list = new LinkedList<>();
 
     public void drawClick(MouseEvent event) {
         int x = (int) event.getX();
         int y = (int) event.getY();
+        String currentShape = cbShapes.getSelectionModel().getSelectedItem().toString();
         shape = shapeFactory.getShape(currentShape);
         shape.setColor(colorPicker.getValue());
         shape.setWidth(slider.getValue());
@@ -98,26 +102,6 @@ public class Controller implements Initializable {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
-    public void btnLinePressed() {
-        currentShape = "Line";
-    }
-
-    public void btnRectanglePressed() {
-        currentShape = "Rectangle";
-    }
-
-    public void btnSquarePressed() {
-        currentShape = "Square";
-    }
-
-    public void btnEllipsePressed() {
-        currentShape = "Ellipse";
-    }
-
-    public void btnCirclePressed() {
-        currentShape = "Circle";
-    }
-
     public void btnClearPressed() {
         clearCanvas();
         list.clear();
@@ -153,10 +137,23 @@ public class Controller implements Initializable {
     }
 
     @Override
+    @SuppressWarnings("unchecked call")
     public void initialize(URL location, ResourceBundle resources) {
         gc = canvas.getGraphicsContext2D();
         shape = shapeFactory.getShape("line");
         colorPicker.setValue(Color.BLACK);
         edtNameOfFile.setText("temp.out");
+
+        cbShapes.setItems(FXCollections.observableArrayList("Line", "Ellipse", "Rectangle", "Circle", "Square"));
+        cbShapes.setValue("Line");
+
+        try {
+            ClassLoader cl = new URLClassLoader(new URL[]{});
+            Class loadedClass = cl.loadClass("Plug.Test");
+            Object obj = loadedClass.getDeclaredConstructor().newInstance();
+            ((Plugin) obj).run();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
